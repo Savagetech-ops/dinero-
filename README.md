@@ -4,22 +4,14 @@ import { motion } from "framer-motion";
 import { FaRobot, FaTools } from "react-icons/fa";
 import { SiWhatsapp } from "react-icons/si";
 
-const services = [
-  {
-    title: "AI Solutions",
-    description:
-      "Custom AI systems, automation tools, and intelligent analytics to streamline your business.",
-    image: "/ai-services.jpg",
-    icon: <FaRobot className="text-green-600 w-8 h-8" />,
-  },
-  {
-    title: "Tech Support",
-    description:
-      "Reliable and efficient tech support for software, hardware, networks, and more.",
-    image: "/tech-support.jpg",
-    icon: <FaTools className="text-blue-600 w-8 h-8" />,
-  },
-];
+const services = Array.from({ length: 40 }, (_, i) => ({
+  title: `Service ${i + 1}`,
+  description: `Description for AI and Tech Support Service ${i + 1}.`,
+  image: `/service-${(i % 2 === 0) ? 'ai' : 'tech'}.jpg`,
+  icon: (i % 2 === 0)
+    ? <FaRobot className="text-green-600 w-8 h-8" />
+    : <FaTools className="text-blue-600 w-8 h-8" />,
+}));
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -38,7 +30,7 @@ export default function Home() {
           transition={{ duration: 1 }}
           className="text-4xl font-bold"
         >
-          DineroTech
+          DineroTech Support
         </motion.h1>
       </div>
     );
@@ -53,16 +45,16 @@ export default function Home() {
       </div>
 
       <header className="text-center py-6 relative z-10">
-        <h1 className="text-4xl font-bold text-gray-800">DineroTech</h1>
+        <h1 className="text-4xl font-bold text-gray-800">DineroTech Support</h1>
         <p className="text-gray-600 mt-2">
-          Empowering Your Business with Smart AI Solutions and Reliable Tech Support
+          40+ AI & Tech Support Services to Empower Your Business
         </p>
         <p className="text-gray-500 text-sm mt-1">
           Contact us: <a href="mailto:dinerotools15@gmail.com" className="underline text-blue-600">dinerotools15@gmail.com</a>
         </p>
       </header>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto relative z-10">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto relative z-10">
         {services.map((service, index) => (
           <motion.div
             key={index}
@@ -78,26 +70,15 @@ export default function Home() {
                 </h2>
               </div>
               <p className="text-gray-600 mb-4">{service.description}</p>
-              <div className="space-y-2">
-                <a
-                  href="https://wa.me/2349021335159"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button className="w-full gap-2 text-white bg-green-600 hover:bg-green-700">
-                    <SiWhatsapp className="w-5 h-5" /> Chat on WhatsApp
-                  </Button>
-                </a>
-                <a
-                  href="https://wa.me/2349021335159"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button className="w-full gap-2 text-white bg-blue-600 hover:bg-blue-700">
-                    Make Payment
-                  </Button>
-                </a>
-              </div>
+              <a
+                href="https://wa.me/2349021335159"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button className="w-full gap-2 text-white bg-green-600 hover:bg-green-700">
+                  <SiWhatsapp className="w-5 h-5" /> Contact on WhatsApp
+                </Button>
+              </a>
             </div>
           </motion.div>
         ))}
